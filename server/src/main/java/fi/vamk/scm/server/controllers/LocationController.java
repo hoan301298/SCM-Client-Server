@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fi.vamk.scm.server.entities.Truck;
-import fi.vamk.scm.server.repositories.TruckRepository;
+import fi.vamk.scm.server.entities.Location;
+import fi.vamk.scm.server.repositories.LocationRepository;
 
 @RestController
-@RequestMapping("/api/truck")
-public class TruckController {
+@RequestMapping("/api/location")
+public class LocationController {
 	@Autowired
-	TruckRepository repository;
+	LocationRepository repository;
 
 	@GetMapping
 	@CrossOrigin(origins = "http://localhost:3000")
-	public Iterable<Truck> readAll() {
+	public Iterable<Location> readAll() {
 		return repository.findAll();
 	}
 }

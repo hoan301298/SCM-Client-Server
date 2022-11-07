@@ -1,19 +1,26 @@
 import {useState, useEffect, FC } from "react";
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Truck } from "../type/Truck";
+import { Location } from "../type/Location";
 import { getTruckData } from "../controllers/TruckController";
+import { getLocationData } from "../controllers/LocationController";
 
 const columns: GridColDef[] = [
   {
-    field: 'licencePlate',
-    headerName: 'Licence plate',
+    field: 'name',
+    headerName: 'Name',
     width: 150,
     editable: false,
   },
   {
-    field: 'name',
-    headerName: 'Name',
+    field: 'lat',
+    headerName: 'Latitude',
+    width: 150,
+    editable: false,
+  },
+  {
+    field: 'lon',
+    headerName: 'Longitude',
     width: 150,
     editable: false,
   }
@@ -27,27 +34,27 @@ const columns: GridColDef[] = [
         { id: 3, licenceplate: 'AKU-313', name: 'Volvo' }
       ]
 */
-const TruckDatagridComponent:FC=props=>{
-  const [truckArray, setTruckArray] = useState<Array<Truck>>([]);
+const LocationDatagridComponent:FC=props=>{
+  const [locationArray, setLocationArray] = useState<Array<any>>();
   useEffect(()=>{
-      readTruckData();
+      readLocationData();
   },[]);
   
-  async function readTruckData(){
-      await getTruckData()
+  async function readLocationData(){
+      await getLocationData()
       .catch(console.error)
       .then(response=>{
-          setTruckArray(response);
+        response&&response!=null&&setLocationArray(response);
           console.log(JSON.stringify(response));
       })
   }
     return(
       <div>
-        <h2>Trucks</h2>
-      {truckArray.length>0?(
+        <h2>Locations</h2>
+      {locationArray&&locationArray.length>0?(
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-                rows={truckArray}
+                rows={locationArray}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
@@ -60,4 +67,4 @@ const TruckDatagridComponent:FC=props=>{
       </div>
     )
 }
-export default TruckDatagridComponent;
+export default LocationDatagridComponent;

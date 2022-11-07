@@ -1,6 +1,7 @@
-package fi.vamk.scm.server.entities;
 
 import java.io.Serializable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import javax.persistence.*;
 
@@ -8,14 +9,16 @@ import javax.persistence.*;
  * The persistent class for the truck database table.
  * 
  */
-@Entity
-@NamedQuery(name = "Location.findAll", query = "SELECT t FROM Location t")
+/// @Entity
+/// @NamedQuery(name = "Location.findAll", query = "SELECT t FROM Location t")
+/// @Retention(RetentionPolicy.RUNTIME)
 public class Location implements Serializable {
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name = "LOCATION_ID_GENERATOR")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOCATION_ID_GENERATOR")
+	/// @Id
+	/// @SequenceGenerator(name = "LOCATION_ID_GENERATOR")
+	/// @GeneratedValue(strategy = GenerationType.SEQUENCE, generator =
+	/// "LOCATION_ID_GENERATOR")
 	private int id;
 	private double lon;
 	private double lat;
