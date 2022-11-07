@@ -8,6 +8,11 @@ import java.util.Hashtable;
 //Note need to change manually the entity name here
 import fi.vamk.scm.server.entities.Location;
 
+/**
+ * Class is used to create TypeScript type-files based on Java Spring boot
+ * entity files
+ * Manages simple string, int, double conversions
+ */
 public class TypeCreator {
     Hashtable<String, String> attributes = new Hashtable<>();
 
@@ -41,7 +46,11 @@ public class TypeCreator {
             while (e.hasMoreElements()) {
                 String key = e.nextElement();
                 if (!key.equals("serialVersionUID")) {
-                    printWriter.print(key + ":" + attributes.get(key).toLowerCase() + ",\n");
+                    if (attributes.get(key).matches("int|double|long|short")) {
+                        printWriter.print(key + ":number,\n");
+                    } else {
+                        printWriter.print(key + ":" + attributes.get(key).toLowerCase() + ",\n");
+                    }
                 }
             }
             printWriter.printf("}");
