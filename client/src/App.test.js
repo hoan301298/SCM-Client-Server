@@ -1,26 +1,62 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
 import TruckContainer from './containers/TruckContainer';
-import { configure, shallow, assert } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import LocationContainer from './containers/LocationContainer';
+import TruckDatagridComponent from './components/TruckDatagridComponent';
 
-test('renders learn react link', () => {
+const trucks =[
+  { id: 1, licenceplate: 'ABC-123', name: 'Volvo'},
+  { id: 2, licenceplate: 'XYZ-321', name: 'Scania'},
+  { id: 3, licenceplate: 'AKU-313', name: 'Volvo' }
+];
+
+test('TruckContainer renders header', () => {
   render(<TruckContainer />);
-  const linkElement = screen.getByText(/SCM Application/i);
+  const linkElement = screen.getByText(/Trucks/i);
   expect(linkElement).toBeInTheDocument();
 });
 
-/*configure({ adapter: new Adapter() });
-describe('Container includes TruckDatagrid")', () => {
-  it("There is one datagrid", () => {
-    const wrapper = shallow(<TruckContainer />);
-    expect(wrapper.find("img").length>0).toBe(true);
-  });
-
-  it("There is min five span-elements", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find("span").length > 4).toBe(true);
-  });
+test('LocationContainer renders header', () => {
+  render(<LocationContainer/>);
+  const linkElement = screen.getByText(/Locations/i);
+  expect(linkElement).toBeInTheDocument();
 });
-*/
+
+
+test('Truck div exists', () => {
+  const { getByTestId } = render(<TruckDatagridComponent trucks={trucks}/>);
+  const div = getByTestId("truck-data-grid-div1");
+  expect(div).toBeInTheDocument();
+});
+
+test('Truck header exists', () => {
+  const { getByTestId } = render(<TruckDatagridComponent trucks={trucks}/>);
+  const header = getByTestId("truck-data-grid-h2-1");
+  expect(header).toBeInTheDocument();
+});
+
+test('Truck header is "Trucks"', () => {
+  const { getByTestId } = render(<TruckDatagridComponent trucks={trucks}/>);
+  const header = getByTestId("truck-data-grid-h2-1");
+  expect(header.innerHTML).toBe("Trucks");
+});
+
+//truck-data-grid-h2-1
+
+//const datagrid = getByTestId("truck-data-grid-datagrid1");
+
+// configure({ adapter: new Adapter() });
+// describe('Container includes TruckDatagrid")', () => {
+//   it("There is one datagrid", () => {
+//     const wrapper = shallow(<TruckContainer />);
+//     expect(wrapper.toBeInTheDocument.toBe(true));
+//       //.classList.contains('MuiBox-root')).toBe(true)
+//     //expect(wrapper.find("div").length>0).toBe(true);
+//   });
+
+  // it("There is min five span-elements", () => {
+  //   const wrapper = shallow(<App />);
+  //   expect(wrapper.find("span").length > 4).toBe(true);
+  // });
+//});
+

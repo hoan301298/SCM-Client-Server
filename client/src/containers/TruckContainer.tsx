@@ -5,7 +5,7 @@ const TruckContainer=()=>{
     return(
         <div>
             <h1>SCM Application</h1>
-            <TruckDatagridComponent />
+            <TruckDatagridComponent trucks={undefined}/>
         </div>
     )
 }

@@ -49,7 +49,7 @@ const LocationDatagridComponent:FC=props=>{
       })
   }
     return(
-      <div>
+      <div id="div1">
         <h2>Locations</h2>
       {locationArray&&locationArray.length>0?(
         <Box sx={{ height: 400, width: '100%' }}>

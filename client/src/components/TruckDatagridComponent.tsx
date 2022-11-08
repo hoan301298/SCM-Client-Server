@@ -27,8 +27,12 @@ const columns: GridColDef[] = [
         { id: 3, licenceplate: 'AKU-313', name: 'Volvo' }
       ]
 */
-const TruckDatagridComponent:FC=props=>{
-  const [truckArray, setTruckArray] = useState<Array<Truck>>([]);
+
+interface Props{
+  trucks?:Array<Truck>;
+}
+const TruckDatagridComponent:FC<Props>=props=>{
+  const [truckArray, setTruckArray] = useState<Array<Truck>|undefined>(props.trucks);
   useEffect(()=>{
       readTruckData();
   },[]);
@@ -42,11 +46,12 @@ const TruckDatagridComponent:FC=props=>{
       })
   }
     return(
-      <div>
-        <h2>Trucks</h2>
-      {truckArray.length>0?(
-        <Box sx={{ height: 400, width: '100%' }}>
+      <div data-testid="truck-data-grid-div1">
+        <h2 data-testid="truck-data-grid-h2-1">Trucks</h2>
+      {truckArray&&truckArray.length>0?(
+        <Box data-testid="truck-data-grid-box1" sx={{ height: 400, width: '100%' }}>
             <DataGrid
+                data-testid="truck-data-grid-datagrid1"
                 rows={truckArray}
                 columns={columns}
                 pageSize={5}
