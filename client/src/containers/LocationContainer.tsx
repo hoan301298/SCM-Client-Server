@@ -8,7 +8,6 @@ const LocationContainer=()=>{
         <div>
             <h1>Location</h1>
             <LocationDatagridComponent/>
-            <LocationMap/>
         </div>
     )
 }
