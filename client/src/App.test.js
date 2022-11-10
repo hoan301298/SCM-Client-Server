@@ -47,6 +47,8 @@ test('Truck header is "Trucks"', () => {
   expect(header.innerHTML).toBe("Trucks");
 });
 
+//added cchange because got error "No hosted parallelism has been purchased or granted."
+// made the repo private and trying to run pipeline nnow
 //truck-data-grid-h2-1
 
 //const datagrid = getByTestId("truck-data-grid-datagrid1");
