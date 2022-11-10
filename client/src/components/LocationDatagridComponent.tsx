@@ -1,7 +1,7 @@
 import {useState, useEffect, FC } from "react";
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Location } from "../type/Location";
+import { SCMLocation } from "../type/SCMLocation";
 import { getTruckData } from "../controllers/TruckController";
 import { getLocationData } from "../controllers/LocationController";
 
@@ -35,7 +35,7 @@ const columns: GridColDef[] = [
       ]
 */
 const LocationDatagridComponent:FC=props=>{
-  const [locationArray, setLocationArray] = useState<Array<any>>();
+  const [locationArray, setLocationArray] = useState<Array<SCMLocation>>();
   useEffect(()=>{
       readLocationData();
   },[]);

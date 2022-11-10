@@ -16,7 +16,7 @@ function App() {
       <nav>
       <Link  to={`/Home`}>Home</Link>{" "}
         <Link to={`/location`}>Location</Link>{" "}
-        <Link to={`/truck`}>Truck</Link>
+        <Link to={`/truck`}>Truck</Link>{" "}
         <Link to={`/about`}>About</Link>
       </nav>
     <Switch>

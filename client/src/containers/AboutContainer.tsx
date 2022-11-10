@@ -12,7 +12,7 @@ import AboutComponent from "../components/AboutComponent";
 const AboutContainer:FC=()=>{
     return(
         <div>
-            About
+            Supply Chain Management (SCM) prototype by <a href="http://www.vamk.fi">http://www.vamk.fi</a>
             <AboutComponent/>
         </div>
     )
