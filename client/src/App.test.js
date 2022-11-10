@@ -48,7 +48,7 @@ test('Truck header is "Trucks"', () => {
 });
 
 //added cchange because got error "No hosted parallelism has been purchased or granted."
-// made the repo private and trying to run pipeline nnow
+// made the repo private and trying to run pipeline now
 //truck-data-grid-h2-1
 
 //const datagrid = getByTestId("truck-data-grid-datagrid1");
