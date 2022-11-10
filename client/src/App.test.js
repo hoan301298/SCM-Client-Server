@@ -10,6 +10,12 @@ const trucks =[
   { id: 3, licenceplate: 'AKU-313', name: 'Volvo' }
 ];
 
+test('renders learn react link', () => {
+  render(<TruckContainer />);
+  const linkElement = screen.getByText(/SCM Application/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
 test('TruckContainer renders header', () => {
   render(<TruckContainer />);
   const linkElement = screen.getByText(/Trucks/i);
