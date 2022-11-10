@@ -4,6 +4,7 @@ import { getAuthor, getKeyValues, saveKeyValues } from "../controllers/AboutCont
 
 const AboutComponent:FC=()=>{
     saveKeyValues();
+    //typescript requires JSON.parse to get something to parse 
     const myArray = JSON.parse(getKeyValues() || '{}');
     const key = myArray.keys()[0];
 
