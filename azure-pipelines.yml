@@ -22,7 +22,7 @@ steps:
     displayName: "npm install and build"
   - task: CopyFilesOverSSH@0
     inputs:
-      sshEndpoint: ssh -i ~/.ssh/id_rsa root@185.70.197.37 
+      sshEndpoint: test-2022
       sourceFolder: target
       contents: '**' 
       targetFolder: /home/tka
