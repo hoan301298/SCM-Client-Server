@@ -20,3 +20,5 @@ steps:
       npm install
       npm run build
     displayName: "npm install and build"
+      apt install sshpass
+      sshpass -p ${{ ubuntu_password}} scp -rp target/* ${{ ubuntu_user }}@185.70.198.158:/home/tka/target/
