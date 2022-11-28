@@ -60,7 +60,7 @@ stages:
       displayName: 'Securely copy files to the remote machine'
       inputs:
         sshEndpoint: timoserver
-        sourceFolder: '$(Build.SourcesDirectory)'
+        sourceFolder: 'target'
         targetFolder: /home/kmcode/scm-km/azure
         cleanTargetFolder: true
         failOnEmptySource: true
