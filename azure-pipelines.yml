@@ -61,6 +61,6 @@ stages:
       inputs:
         sshEndpoint: timoserver
         sourceFolder: 'target'
-        targetFolder: /home/kmcode/scm-km/azure
+        targetFolder: /home/tka/server
         cleanTargetFolder: true
         failOnEmptySource: true
