@@ -54,6 +54,45 @@ stages:
         pathToPublish: $(Build.ArtifactStagingDirectory)
         artifactName: SpringBootBuild
 
+- stage: Build_Client
+  displayName: Build Client
+  jobs:
+  - job: Build_Client
+    displayName: Build SCM Client
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '16.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        cd scm-client
+        npm install
+        npm run build
+      displayName: 'npm install and build'
+
+    - task: CopyFilesOverSSH@0
+      displayName: 'Securely copy files to the remote machine'
+      inputs:
+        sshEndpoint: timoserver
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/client/build/**'
+        targetFolder: /home/tkapc/
+        failOnEmptySource: true
+
+    - task: CopyFiles@2
+      displayName: 'Copy Build Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/client/build/**'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: ReactBuild
+
 # - stage: Copy_to_Timos_Server
 #   displayName: Copy Build to Timos Server
 #   jobs:
