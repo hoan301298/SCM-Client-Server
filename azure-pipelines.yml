@@ -31,18 +31,41 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
-- stage: Copy_to_Timos_Server
-  displayName: Copy Build to Timos Server
-  jobs:
-  - job: Copy_to_Timos_Server
-    displayName: 'Securely copy files to the remote machine'
-    steps:
+        
     - task: CopyFilesOverSSH@0
+      displayName: 'Securely copy files to the remote machine'
       inputs:
         sshEndpoint: timoserver
-        contents:
-          server/target/*.jar
-        sourceFolder: '$(Build.SourcesDirectory)'
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/scm-server/target/*.?(war|jar)'
         targetFolder: /home/tkapc/server/
-        cleanTargetFolder: true
         failOnEmptySource: true
+        cleanTargetFolder: true
+
+    - task: CopyFiles@2
+      displayName: 'Copy Jar Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/scm-server/target/*.?(war|jar)'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: SpringBootBuild
+
+# - stage: Copy_to_Timos_Server
+#   displayName: Copy Build to Timos Server
+#   jobs:
+#   - job: Copy_to_Timos_Server
+#     displayName: 'Securely copy files to the remote machine'
+#     steps:
+#     - task: CopyFilesOverSSH@0
+#       inputs:
+#         sshEndpoint: timoserver
+#         contents:
+#           server/target/*.jar
+#         sourceFolder: '$(Build.SourcesDirectory)'
+#         targetFolder: /home/tkapc/server/
+#         cleanTargetFolder: true
+#         failOnEmptySource: true
