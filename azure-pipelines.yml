@@ -49,18 +49,17 @@ stages:
         npm install
         npm run build
       displayName: 'npm install and build'
-
 - stage: Copy_to_Timos_Server
   displayName: Copy Build to Timos Server
   jobs:
   - job: Copy_to_Timos_Server
-    displayName: Copy Build to Timos Server
+    displayName: 'Securely copy files to the remote machine'
     steps:
     - task: CopyFilesOverSSH@0
-      displayName: 'Securely copy files to the remote machine'
       inputs:
         sshEndpoint: timoserver
-        sourceFolder: 'target'
-        targetFolder: /home/tka/server
+        contents: server/target/*.jar
+        sourceFolder: '$(Build.SourcesDirectory)'
+        targetFolder: /home/tka/server/
         cleanTargetFolder: true
         failOnEmptySource: true
