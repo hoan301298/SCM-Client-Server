@@ -37,7 +37,7 @@ stages:
       inputs:
         sshEndpoint: timoserver
         SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/scm-server/target/*.?(war|jar)'
+        Contents: '**/server/target/*.?(war|jar)'
         targetFolder: /home/tkapc/server/
         failOnEmptySource: true
         cleanTargetFolder: true
