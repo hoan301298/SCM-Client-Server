@@ -40,7 +40,8 @@ stages:
     - task: CopyFilesOverSSH@0
       inputs:
         sshEndpoint: timoserver
-        contents: server/target/*.jar
+        contents: |
+          server/target/*.jar
         sourceFolder: '$(Build.SourcesDirectory)'
         targetFolder: /home/tkapc/server/
         cleanTargetFolder: true
