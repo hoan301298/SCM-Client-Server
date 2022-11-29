@@ -14,7 +14,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
 stages:
 - stage: Build_Server
   displayName: Build Server
@@ -24,7 +23,7 @@ stages:
     steps:
     - task: Maven@3
       inputs:
-        mavenPomFile: 'scm-server/pom.xml'
+        mavenPomFile: 'server/pom.xml'
         mavenOptions: '-Xmx3072m'
         javaHomeOption: 'JDKVersion'
         jdkVersionOption: '1.9'
@@ -32,23 +31,6 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
-- stage: Build_Clicent
-  displayName: Build Client
-  jobs:
-  - job: Build_Client
-    displayName: Build SCM Client
-
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '16.x'
-      displayName: 'Install Node.js'
-
-    - script: |
-        cd scm-client
-        npm install
-        npm run build
-      displayName: 'npm install and build'
 - stage: Copy_to_Timos_Server
   displayName: Copy Build to Timos Server
   jobs:
