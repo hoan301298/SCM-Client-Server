@@ -42,6 +42,6 @@ stages:
         sshEndpoint: timoserver
         contents: server/target/*.jar
         sourceFolder: '$(Build.SourcesDirectory)'
-        targetFolder: /home/tka/server/
+        targetFolder: /home/tkapc/server/
         cleanTargetFolder: true
         failOnEmptySource: true
