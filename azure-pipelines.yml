@@ -38,7 +38,7 @@ stages:
         sshEndpoint: timoserver
         SourceFolder: '$(System.DefaultWorkingDirectory)'
         Contents: '**/server/target/*.?(war|jar)'
-        targetFolder: /home/tkapc/server/
+        targetFolder: /home/tkapc/
         failOnEmptySource: true
         cleanTargetFolder: true
 
@@ -46,7 +46,7 @@ stages:
       displayName: 'Copy Jar Files to artifact staging directory'
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/scm-server/target/*.?(war|jar)'
+        Contents: '**/server/target/*.?(war|jar)'
         TargetFolder: $(Build.ArtifactStagingDirectory)
 
     - task: PublishBuildArtifacts@1
