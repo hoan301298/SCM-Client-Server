@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="70d1c835-9387-4a23-99bf-540c25918258" name="SCM client-server" url="jdbc:mariadb://mariadb.vamk.fi/e2000575_scm" driverClass="org.mariadb.jdbc.Driver" />
+    </data-sources>
+  </component>
+</project>

@@ -1,5 +1,5 @@
 export function getAuthor(){
-    return "hello world from Timo";
+    return "hello world from Hoan";
 }
 
 /**
@@ -14,7 +14,7 @@ export function getKeyValues(){
 
 export function saveKeyValues(){
     let array=[];
-    const item={developer:"Timo Kankaanpää"};
+    const item={developer:"Tran Hoan (e2000575)"};
     const item1={version:"0.01"};
 
     const item2={client:"React 18"};
